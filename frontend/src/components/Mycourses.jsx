@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 function Mycourses() {
   const [courses, setCourses] = useState([]); // Initialize as an empty array
   const [error, setError] = useState(null); // State for error handling
+  const [path, setPath] = useState("");
 
   const getCourse = async () => {
     try {
@@ -14,7 +15,7 @@ function Mycourses() {
           token: localStorage.getItem("token"),
         },
       });
-      console.log(response.data.courseData); // Log fetched courses for debugging
+      // console.log(response.data.courseData); // Log fetched courses for debugging
       setCourses(response.data.courseData || []); // Update the state with courses
     } catch (error) {
       console.error("Error fetching courses", error);
@@ -23,6 +24,9 @@ function Mycourses() {
   };
 
   useEffect(() => {
+    const pathName = window.location.pathname; // Get the path, e.g. "/published"
+    const lastSegment = pathName.split("/").pop(); // Get the last segment "published"
+    setPath(lastSegment);
     getCourse();
   }, []);
 
@@ -38,6 +42,7 @@ function Mycourses() {
               imageUrl={c.imageUrl}
               description={c.description}
               courseId={c._id}
+              path = {path}
             />
           </div>
         ))

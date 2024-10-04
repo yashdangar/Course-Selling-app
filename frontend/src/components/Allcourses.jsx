@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Allcourses() {
+  const {role} = useSelector((state)=>state.role)
   const [courses, setCourses] = useState([]); // Initialize as an empty array
 
   const getCourse = async () => {
@@ -30,6 +32,7 @@ function Allcourses() {
           imageUrl = {c.imageUrl} 
           description={c.description}
           courseId = {c._id}
+          path = {role}
         />
         </div>
 

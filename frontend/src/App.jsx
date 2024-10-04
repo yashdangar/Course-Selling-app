@@ -10,6 +10,7 @@ import Mycourses from "./components/Mycourses";
 import Card from "./components/Card";
 import Published from "./components/Published";
 import Payment from "./components/Payment";
+import Editcourse from "./components/EditCourse";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/add" element={<Addcourse/>}></Route>
         <Route path="/card" element={<Card/>}></Route>
         <Route path = "/published" element = {<Published/>}></Route>
+        <Route path = "/:id/edit" element = {<Editcourse/>}></Route>
         
 
       </Routes>
